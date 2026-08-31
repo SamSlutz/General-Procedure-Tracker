@@ -2,7 +2,7 @@
 A configurable desktop app for tracking recurring procedures for a list of people or items, built with Python and Tkinter.
 
 
-> **Disclaimer:** This software is provided for demonstration and general record-tracking purposes. Do not use it to store sensitive personal or regulated information (e.g. real medical, financial, or otherwise legally protected data) without independently evaluating the applicable legal, privacy, and security requirements. Ships with synthetic/demo data only.
+> **Disclaimer:** This software is provided for demonstration and general record-tracking purposes. Do not use it to store sensitive personal or regulated information (e.g. real medical, financial, or otherwise legally protected data) without independently evaluating the applicable legal, privacy, and security requirements. Ships with a blank data template.
 
 ## Why this exists
 
@@ -18,14 +18,25 @@ Some of the scaffolding was AI-assisted. The scheduling algorithm below was not:
 - **Automatic status flags** (color-coded) showing who's currently due for their next procedure, and whether someone's registry enrollment has lapsed
 - **CSV-backed storage:** human-readable, portable, easy to inspect or edit by hand
 - **Editable history per person:** add, remove, or correct individual dates after the fact
-- Packagable as a standalone desktop app (macOS/Windows) via PyInstaller
+- Packagable as a standalone desktop app (Windows/macOS) via PyInstaller
 
 ## Windows and Mac screenshots
 
 ![Appscreenshot](assets/General_Procedure_micro.png)
+
 ![Appscreenshot](assets/General_tracker_mac.png)
 
-## Getting started
+## Getting the app
+
+There are two ways to use this project, depending on what you want to do.
+
+### Just want to run it
+
+Download the prebuilt app for your OS from the [Releases](../../releases) page. No Python or any other setup required, just download and run. Each release includes a blank `people.csv` with the correct headers already in place; keep it in the same folder as the app.
+
+### Building it yourself
+
+Everything below (Python, pandas, PyInstaller) is only needed if you want to build the app from source or modify the code. If you just want to use the app, use the Releases page instead.
 
 **Requirements:** Python 3.11+, [pandas](https://pypi.org/project/pandas/)
 
@@ -36,7 +47,7 @@ pip install pandas
 python tracker_gui_tk.py
 ```
 
-On first launch, the app looks for a `people.csv` file in the project root. This repo includes a blank template and a file of synthetic demo data; rename whichever one you want to start with to `people.csv`.
+This repo includes a blank `people.csv` (inside `builds/`) with the header row already set, so you can run it immediately without creating your own data file.
 
 ## Usage
 
@@ -78,7 +89,7 @@ The only remaining hardcoded value in the app is the registry lapse window, fixe
 
 ## Using your own data
 
-The included `people.csv` files use the header row the app expects:
+`people.csv` uses the header row the app expects:
 
 ```
 Name,Registry,Registry Date,Process 1,Process 1 Date,Process 2,Process 2 Date,Flag,Registration Flag
@@ -91,32 +102,38 @@ To point the app at your own dataset, reshape your CSV to match this header row 
 ```
 .
 ├── tracker_gui_tk.py     # Tkinter GUI, main entry point
-├── builds/
-│   ├── __init__.py
-│   └── tracker.py        # Data model (Person class), scheduling logic, CSV I/O, CLI mode
-├── people.csv             # Your data (not committed, see .gitignore)
-└── tracker_config.json    # Saved labels + schedule settings (auto-created on first run)
+└── builds/
+    ├── __init__.py        # makes builds/ importable as a package, required
+    ├── tracker.py         # Data model (Person class), scheduling logic, CSV I/O, CLI mode
+    └── people.csv          # Blank data file, used automatically when running from source
 ```
+
+`tracker_config.json` is created automatically next to `people.csv` the first time you run the app.
 
 `tracker.py` also works standalone as a command-line version of the same tool. Run `python builds/tracker.py` for a terminal-based menu with the same feature set.
 
 ## Building a standalone app
 
-The project can be packaged into a double-clickable app with [PyInstaller](https://pyinstaller.org/):
+### Windows
+
+Open PowerShell in the project folder (the one containing `tracker_gui_tk.py`) and run:
+
+```powershell
+& "C:\Path\To\Your\Python311\Scripts\pyinstaller.exe" --clean --onedir --windowed --name Tracker tracker_gui_tk.py
+```
+
+Your `pyinstaller.exe` path will be different. Find yours by running `where pyinstaller` after installing it with `pip install pyinstaller`, or check inside your Python installation's `Scripts` folder. Calling the `.exe` directly like this avoids any confusion between multiple Python installs on the same machine.
+
+This produces `dist\Tracker\Tracker.exe`. Copy a blank `people.csv` into that same `dist\Tracker\` folder, next to `Tracker.exe`. The frozen app looks for `people.csv` in its own folder, not inside any `builds\` subfolder, even though that's where it lives in the source tree.
+
+### macOS
 
 ```bash
 pip install pyinstaller
 pyinstaller --windowed tracker_gui_tk.py
 ```
 
-Place `people.csv` next to the built executable/`.app` bundle so the app can find it. See `macbuild.py` for a scripted version of this step.
-
-## Adding a screenshot
-
-1. Take a screenshot of the app running.
-2. Save it into the repo, for example as `assets/screenshot.png`.
-3. Reference it in this README using markdown image syntax: `![App screenshot](assets/screenshot.png)`.
-4. Commit and push both the image file and this README together. GitHub only renders images that actually exist in the repo, not local-only file paths.
+Place a blank `people.csv` next to the resulting `.app` bundle the same way.
 
 ## Known limitations
 
