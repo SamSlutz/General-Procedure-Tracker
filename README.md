@@ -8,7 +8,7 @@ A configurable desktop app for tracking recurring procedures for a list of peopl
 
 I built this to practice desktop app architecture, data modeling, and turning a narrow, domain-specific tool into a genuinely reusable one. It started as a single-purpose tracker for a specific use case with two hardcoded procedure types on a fixed schedule; I refactored it into a generic version where both the labels and the underlying scheduling rule are configuration, not code.
 
-Some of the scaffolding was AI-assisted. The scheduling algorithm below was not: an AI tool's first attempt at the recurrence got it wrong, so I derived the closed-form version myself and verified it against the original hardcoded behavior before generalizing it.
+Some of the scaffolding was AI-assisted. The scheduling algorithm below was not: an AI tool attempted to create the recurrence relation to no avail, so I derived the closed-form version myself and verified it against the original hardcoded behavior before generalizing it.
 
 ## Features
 
