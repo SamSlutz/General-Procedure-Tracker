@@ -144,6 +144,7 @@ This is a portfolio-scale project, not a production system:
 - No authentication, encryption, or audit trail
 - Local CSV storage only
 - Registry lapse window is hardcoded to 6 months
+- The Flag reflects a cumulative ratio of Process 1 to Process 2 counts, not a per-event reset: it does not "clear" after each individual Process 1 entry the way a checklist item would
 
 ## License
 
