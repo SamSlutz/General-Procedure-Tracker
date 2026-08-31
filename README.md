@@ -41,7 +41,7 @@ Everything below (Python, pandas, PyInstaller) is only needed if you want to bui
 **Requirements:** Python 3.11+, [pandas](https://pypi.org/project/pandas/)
 
 ```bash
-git clone https://github.com/<your-username>/general-procedure-tracker.git
+git clone https://github.com/<SamSlutz>/general-procedure-tracker.git
 cd general-procedure-tracker
 pip install pandas
 python tracker_gui_tk.py
@@ -147,7 +147,7 @@ This is a portfolio-scale project, not a production system:
 
 ## License
 
-[MIT](LICENSE). Free to use, modify, and distribute.
+License: MIT. See LICENSE for the full license text.
 
 ## Acknowledgments
 
