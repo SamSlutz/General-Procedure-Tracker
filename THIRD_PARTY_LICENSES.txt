@@ -1,0 +1,69 @@
+THIRD-PARTY SOFTWARE NOTICES
+============================
+
+General Procedure Tracker uses the following third-party open-source
+software components.
+
+These components are distributed under their respective licenses.
+Nothing in these notices changes the license of General Procedure Tracker
+itself, which is distributed under the MIT License.
+
+
+pandas 2.3.3
+------------
+Copyright (c) 2008-2011, AQR Capital Management, LLC,
+Lambda Foundry, Inc. and PyData Development Team
+
+Copyright (c) 2011-2023, Open source contributors.
+
+License: BSD 3-Clause License
+
+Pandas license:
+https://github.com/pandas-dev/pandas/blob/v2.3.3/LICENSE
+
+
+NumPy 2.4.1
+-----------
+License: BSD 3-Clause License and additional permissive licenses
+applicable to individual components.
+
+NumPy license information:
+https://github.com/numpy/numpy/blob/v2.4.1/LICENSE.txt
+
+
+python-dateutil
+---------------
+License: Apache License 2.0 or BSD 3-Clause License,
+depending on the contribution.
+
+python-dateutil license information:
+https://github.com/dateutil/dateutil/blob/master/LICENSE
+
+
+pytz
+----
+License: MIT License.
+
+pytz license information:
+https://github.com/stub42/pytz/blob/master/LICENSE.txt
+
+
+tzdata
+------
+License: Apache License 2.0.
+
+tzdata license:
+https://github.com/python/tzdata/blob/master/LICENSE
+
+
+PyInstaller
+-----------
+General Procedure Tracker is packaged using PyInstaller.
+
+PyInstaller's license includes an exception permitting
+PyInstaller-generated executable bundles to be distributed under
+the application's own license, subject to the licenses of the
+application's other dependencies.
+
+PyInstaller license information:
+https://pyinstaller.org/en/v6.22.2/license.html
